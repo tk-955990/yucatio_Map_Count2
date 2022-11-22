@@ -37,8 +37,8 @@ public class MapCount {
 		for (Employee e:employee) {
 			System.out.println(e);
 			}
-/*		
-		private Map<String, Integer>
+		
+/*		private Map<String, Integer>
 		coutBySection(List<Employeee> employees) {
 			  Map<String, Integer> map = new HashMap<>();
 			  
@@ -49,7 +49,7 @@ public class MapCount {
 			}
 		
 		
-	
+	*/
 		//    Map<String, Integer> countMap = countBySection(employee)
 
 /*		private static Map<String, Long> 

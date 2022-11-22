@@ -45,7 +45,7 @@ public class Employee {
 	}
 */
 	public String toString() {
-		return "名前:" + format(this.name, 12) + "部署:" + format(this.section, 14) + "性別:" + format(this.gender,5);
+		return "名前:" + format(this.name, 15) + "部署:" + format(this.section, 24) + "性別:" + format(this.gender,5);
 	}
 	
 	private String format(String target, int length) {
