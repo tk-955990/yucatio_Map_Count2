@@ -36,33 +36,22 @@ public class MapCount {
 
 		for (Employee e:employee) {
 			System.out.println(e);
-			}
+		}
 		
-/*		private Map<String, Integer>
-		coutBySection(List<Employeee> employees) {
-			  Map<String, Integer> map = new HashMap<>();
-			  
-			  for (employee: employees) {
-			     // TODO ここを実装
-			  }
-			  return map;
-			}
-		
-		
-	*/
-		//    Map<String, Integer> countMap = countBySection(employee)
+		// stream を使わない実装	
 
-/*		private static Map<String, Long> 
-		countBySection(List<Employee>employee) {
-			return employee.stream()
-					.collect(Collectors.groupingBy(Employee::getSection,
-							Collectors.counting()));
+		private Map<String, Integer>
+		coutBySection(List<Employeee> employees) {
+			Map<String, Integer> map = new HashMap<>();
+
+			for (Employee e:employee) {
+				// TODO ここを実装
+			}
+			return map;
 		}
-		for(Entry<String, Long> map: countMap.entrySet()) {
-			System.out.println(map.getKey() + " :" + map.getValue());
-		}
-*/
-		
+
+		// stream での実装
+		/* 
 		Map<String, Long> countMap = employee
 				.stream()
 				.collect(Collectors.groupingBy(Employee::getSection,
@@ -71,9 +60,7 @@ public class MapCount {
 		for(Entry<String, Long> map: countMap.entrySet()) {
 			System.out.println(map.getKey() + " :" + map.getValue());
 		}
+		 */
 
-		
 	}
 }
-
-
