@@ -37,30 +37,55 @@ public class MapCount {
 		for (Employee e:employee) {
 			System.out.println(e);
 		}
+
+		Map<String, Integer> countMap = countBySection(employee);
 		
-		// stream を使わない実装	
-
-		private Map<String, Integer>
-		coutBySection(List<Employeee> employees) {
-			Map<String, Integer> map = new HashMap<>();
-
-			for (Employee e:employee) {
-				// TODO ここを実装
+		for (Entry<String,Integer> map:countMap.entrySet()) {
+			System.out.println(map.getKey() + ":" + map.getValue());
 			}
-			return map;
-		}
-
+		/*
 		// stream での実装
-		/* 
+
 		Map<String, Long> countMap = employee
 				.stream()
 				.collect(Collectors.groupingBy(Employee::getSection,
 						Collectors.counting()));
-
 		for(Entry<String, Long> map: countMap.entrySet()) {
 			System.out.println(map.getKey() + " :" + map.getValue());
 		}
-		 */
+		 */	 
 
+	}
+
+	// stream を使わない実装	
+
+	private static Map<String, Integer>
+	countBySection(List<Employee> employee) {
+		Map<String, Integer> map = new HashMap<>();
+
+		/*		Counter<Integer> c = new Counter<>();
+        for (int v : employee) {
+            c.add(v);
+        }
+        for (Integer i : c.keySet()) {
+            System.out.println(i + ":cnt=" + c.get(i));
+        }
+		 */		
+		for (Employee e:employee) {
+			// TODO ここを実装
+			if (map.containsKey("情報システム部")) {
+				int x = map.get("情報システム部");
+				System.out.println("情報システム部:" + x );
+			}
+			if (map.containsKey("情報セキュリティー部 ")) {
+				int y = map.get("情報セキュリティー部");
+				System.out.println("情報セキュリティー部:" + y);
+			}
+			if (map.containsKey("登山研究部 ")) {
+				int z = map.get("登山研究部");
+				System.out.println("登山研究部: " + z);
+			}
+		}
+		return map;
 	}
 }
