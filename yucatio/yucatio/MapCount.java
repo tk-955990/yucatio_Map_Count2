@@ -36,44 +36,32 @@ public class MapCount {
 
 		for (Employee e:employee) {
 			System.out.println(e);
-			}
-/*		
-		private Map<String, Integer>
-		coutBySection(List<Employeee> employees) {
-			  Map<String, Integer> map = new HashMap<>();
-			  
-			  for (employee: employees) {
-			     // TODO ここを実装
-			  }
-			  return map;
-			}
-		
-		
-	
-		//    Map<String, Integer> countMap = countBySection(employee)
+		}
 
-/*		private static Map<String, Long> 
-		countBySection(List<Employee>employee) {
-			return employee.stream()
-					.collect(Collectors.groupingBy(Employee::getSection,
-							Collectors.counting()));
-		}
-		for(Entry<String, Long> map: countMap.entrySet()) {
-			System.out.println(map.getKey() + " :" + map.getValue());
-		}
-*/
-		
+		// stream を使わない実装	
+		Map<String, Integer> countMap = countBySection(employee);
+
+
+ /*
+		// stream での実装
 		Map<String, Long> countMap = employee
 				.stream()
 				.collect(Collectors.groupingBy(Employee::getSection,
 						Collectors.counting()));
-
 		for(Entry<String, Long> map: countMap.entrySet()) {
 			System.out.println(map.getKey() + " :" + map.getValue());
 		}
+ */	 
 
-		
 	}
-}
 
+	private static Map<String, Integer> countBySection(List<Employee> employee) {
+		Map<String, Integer> map = new HashMap<>();
+		for (Entry<String,Integer> entryMap:countMap.entrySet()) {
+			System.out.println(entryMap.getKey() + ":" + entryMap.getValue());
+		}
+		return map;
+	}
+
+}
 
