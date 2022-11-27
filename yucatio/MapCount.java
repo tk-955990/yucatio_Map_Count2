@@ -10,6 +10,8 @@ import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 public class MapCount {
 	public static void main(String args[])  {
 		// new Employee(名前、部署、性別)
@@ -38,14 +40,15 @@ public class MapCount {
 			System.out.println(e);
 		}
 
+		// stream を使わない実装	
 		Map<String, Integer> countMap = countBySection(employee);
-		
-		for (Entry<String,Integer> map:countMap.entrySet()) {
-			System.out.println(map.getKey() + ":" + map.getValue());
-			}
+
+		for(Entry<String, Integer> map: countMap.entrySet()) {
+			System.out.println(map.getKey() + " :" + map.getValue());
+		}
+
 		/*
 		// stream での実装
-
 		Map<String, Long> countMap = employee
 				.stream()
 				.collect(Collectors.groupingBy(Employee::getSection,
@@ -56,36 +59,47 @@ public class MapCount {
 		 */	 
 
 	}
+	/*
+	private static Map<String, Integer> countBySection(List<Employee> employee) {
+		Map<String, Integer> map = new HashMap<>();
+		for (Employee e:employee) {
+			// ここにカウント処理って事ですね
 
-	// stream を使わない実装	
+		}
+		return map;
+	}
+	 */
 
-	private static Map<String, Integer>
-	countBySection(List<Employee> employee) {
+/*
+	private static Map<String, Integer> countBySection(List<Employee> employee){
 		Map<String, Integer> map = new HashMap<>();
 
-		/*		Counter<Integer> c = new Counter<>();
-        for (int v : employee) {
-            c.add(v);
-        }
-        for (Integer i : c.keySet()) {
-            System.out.println(i + ":cnt=" + c.get(i));
-        }
-		 */		
-		for (Employee e:employee) {
-			// TODO ここを実装
+		for (Entry<String,Integer> map:countMap.entrySet()) {
+			System.out.println(map.getKey() + ":" + map.getValue());
+		}
+		return map;
+	}
+*/
+
+
+	private static Map<String, Integer> countBySection(List<Employee> employee) {
+		Map<String, Integer> map = new HashMap<>();
+		for (Iterator<String,Integer>itrMap:employee.entrySet().iterator(); itrMap.hasNext();) {
 			if (map.containsKey("情報システム部")) {
 				int x = map.get("情報システム部");
-				System.out.println("情報システム部:" + x );
+				System.out.println("情報システム部:" + x);
 			}
-			if (map.containsKey("情報セキュリティー部 ")) {
+			if (map.containsKey("情報セキュリティー部")) {
 				int y = map.get("情報セキュリティー部");
 				System.out.println("情報セキュリティー部:" + y);
 			}
-			if (map.containsKey("登山研究部 ")) {
+			if (map.containsKey("登山研究部")) {
 				int z = map.get("登山研究部");
-				System.out.println("登山研究部: " + z);
+				System.out.println("登山研究部:" + z);
 			}
 		}
 		return map;
 	}
+
+
 }
