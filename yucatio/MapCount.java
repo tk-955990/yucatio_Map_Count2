@@ -1,6 +1,7 @@
 package yucatio;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -9,8 +10,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class MapCount {
 	public static void main(String args[])  {
@@ -36,70 +35,85 @@ public class MapCount {
 		employee.add(new Employee("FLASH"      , "登山研究部"          ,"F")); 
 
 
-		for (Employee e:employee) {
-			System.out.println(e);
-		}
+		//		for (Employee e:employee) {
+		//			System.out.println(e);
+		//		}
 
 		// stream を使わない実装	
 		Map<String, Integer> countMap = countBySection(employee);
 
-		for(Entry<String, Integer> map: countMap.entrySet()) {
-			System.out.println(map.getKey() + " :" + map.getValue());
-		}
+	}
 
-		/*
+	// 部署n種類のgroupingBy(stream を使わない実装)
+	private static Map<String, Integer> countBySection(List<Employee> employee) {
+		Map<String, Integer> map = new HashMap<>();
+		int numOfemp = 0;
+		for (Employee e:employee) {
+			if(map.containsKey(e.getSection())) {
+				map.replace(e.getSection(),   numOfemp++   );
+			}else{
+				map.put(e.getSection(),   numOfemp = 1   );
+			}
+		}
+		map.forEach((key, val) -> System.out.println(key + " : " + val));
+		return map;
+	}
+}
+/*	
+    // stream を使わない実装	
+	private static Map<String, Integer> countBySection(List<Employee> employee) {
+		Map<String, Integer> map = new HashMap<>();
+		for (Entry<String,Integer> entryMap:List<Employee> employee.entrySet()) {
+
+
+
+			System.out.println(entryMap.getKey() + ":" + entryMap.getValue());
+		}
+		return map;
+	}
+}
+ */
+
+/*
 		// stream での実装
 		Map<String, Long> countMap = employee
 				.stream()
 				.collect(Collectors.groupingBy(Employee::getSection,
 						Collectors.counting()));
-		for(Entry<String, Long> map: countMap.entrySet()) {
+		for(Entry<String, Integer> map: countMap.entrySet()) {
 			System.out.println(map.getKey() + " :" + map.getValue());
 		}
-		 */	 
+ */
 
-	}
-	/*
-	private static Map<String, Integer> countBySection(List<Employee> employee) {
-		Map<String, Integer> map = new HashMap<>();
-		for (Employee e:employee) {
-			// ここにカウント処理って事ですね
-
-		}
-		return map;
-	}
-	 */
 
 /*
-	private static Map<String, Integer> countBySection(List<Employee> employee){
-		Map<String, Integer> map = new HashMap<>();
-
-		for (Entry<String,Integer> map:countMap.entrySet()) {
-			System.out.println(map.getKey() + ":" + map.getValue());
-		}
-		return map;
-	}
-*/
-
-
 	private static Map<String, Integer> countBySection(List<Employee> employee) {
 		Map<String, Integer> map = new HashMap<>();
-		for (Iterator<String,Integer>itrMap:employee.entrySet().iterator(); itrMap.hasNext();) {
-			if (map.containsKey("情報システム部")) {
-				int x = map.get("情報システム部");
-				System.out.println("情報システム部:" + x);
-			}
-			if (map.containsKey("情報セキュリティー部")) {
-				int y = map.get("情報セキュリティー部");
-				System.out.println("情報セキュリティー部:" + y);
-			}
-			if (map.containsKey("登山研究部")) {
-				int z = map.get("登山研究部");
-				System.out.println("登山研究部:" + z);
+
+		int x = 0;
+		int y = 0;
+		int z = 0;
+		for (Employee e: employee){
+			switch (e.getSection()) {
+			case "情報システム部":
+				x++;
+				break;
+			case "情報セキュリティー部":
+				y++;
+				break;
+			case "登山研究部":
+				z++;
+				break;
+			default:
+				break;
 			}
 		}
+		map.put("情報システム部",x);
+		map.put("情報セキュリティー部",y);
+		map.put("登山研究部",z);
+	//	map.forEach((key, val) -> System.out.println(key + " : " + val));
 		return map;
 	}
 
-
 }
+ */
